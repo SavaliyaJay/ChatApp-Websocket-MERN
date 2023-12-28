@@ -1,9 +1,12 @@
 const express = require("express");
 const { chats } = require("./data/data");
+const connectDB = require("./config/db");
 require("dotenv").config();
 
 const app = express();
 
+connectDB();
+app.use(express.json());
 app.get("/", (req, res) => {
     res.json({ message: "Welcome to jay's application." });
 });
