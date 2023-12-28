@@ -8,7 +8,7 @@ app.get("/", (req, res) => {
     res.json({ message: "Welcome to jay's application." });
 });
 
-app.get("/api/chats", (req, res) => {
+app.get("/api/chat", (req, res) => {
     res.send(chats);
 });
 
