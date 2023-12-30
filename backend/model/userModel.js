@@ -8,9 +8,8 @@ const userSchema = mongoose.Schema(
     password: { type: "String", required: true },
     pic: {
       type: "String",
-      required: true,
       default:
-       "http://m.gettywallpapers.com/wp-content/uploads/2023/05/Cool-Anime-Avatar.jpg"
+        "http://m.gettywallpapers.com/wp-content/uploads/2023/05/Cool-Anime-Avatar.jpg"
     },
     // isAdmin: {
     //   type: Boolean,
@@ -18,21 +17,21 @@ const userSchema = mongoose.Schema(
     //   default: false,
     // },
   },
-  { timestaps: true }
+  { timestamps: true }
 );
 
-// userSchema.methods.matchPassword = async function (enteredPassword) {
-//   return await bcrypt.compare(enteredPassword, this.password);
-// };
+userSchema.methods.matchPassword = async function (enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password);
+};
 
-// userSchema.pre("save", async function (next) {
-//   if (!this.isModified) {
-//     next();
-//   }
+userSchema.pre("save", async function (next) {
+  if (!this.isModified) {
+    next();
+  }
 
-//   const salt = await bcrypt.genSalt(10);
-//   this.password = await bcrypt.hash(this.password, salt);
-// });
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+});
 
 const User = mongoose.model("User", userSchema);
 
