@@ -8,6 +8,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router';
 
 const Signup = () => {
+    
     const [show, setShow] = useState(false);
     const handleClick = () => setShow(!show);
     const toast = useToast();
